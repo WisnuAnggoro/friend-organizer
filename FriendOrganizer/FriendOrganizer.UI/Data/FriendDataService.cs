@@ -32,13 +32,21 @@ namespace FriendOrganizer.UI.Data
         //    }
         //}
 
-        public async Task<List<Friend>> GetAllAsync()
+        //public async Task<List<Friend>> GetAllAsync()
+        //{
+        //    using (var ctx = _contextCreator())
+        //    {
+        //        var friends = await ctx.Friends.AsNoTracking().ToListAsync();
+        //        await Task.Delay(5000);
+        //        return friends;
+        //    }
+        //}
+
+        public async Task<Friend> GetByIdAsync(int friendId)
         {
             using (var ctx = _contextCreator())
             {
-                var friends = await ctx.Friends.AsNoTracking().ToListAsync();
-                await Task.Delay(5000);
-                return friends;
+                return await ctx.Friends.AsNoTracking().SingleAsync(f => f.Id == friendId);
             }
         }
     }
